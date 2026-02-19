@@ -1,4 +1,4 @@
-# cloudtrail_audit.py
+# CloudTrail Audit
 
 A Python tool that analyzes AWS CloudTrail logs to detect suspicious activity.
 
