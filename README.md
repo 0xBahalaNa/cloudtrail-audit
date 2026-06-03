@@ -126,7 +126,7 @@ SENSITIVE_EVENTS = {
 
 ## How an Auditor Uses This Output
 
-An assessor reviewing a FedRAMP High or CJIS v6.0 authorization package can use this script as the operational tool that satisfies AU-6 (Audit Record Review). The four detection categories map one-to-one to the high-leverage review questions an assessor asks during a walkthrough: *"Show me your root account monitoring," "Show me your failed-API trend," "Show me how you flag changes to the audit infrastructure itself,"* and *"Show me console login review."* The `SUMMARY` block becomes the per-period review record that documents AU-6 compliance, and the structured event excerpts give the assessor the raw evidence behind each finding.
+An assessor reviewing a FedRAMP High or CJIS v6.0 authorization package can use this script as the operational tool that satisfies AU-6 (Audit Record Review). The four detection categories map one-to-one to the high-leverage review questions an assessor asks during a walkthrough: *"Show me your root account monitoring,"* *"Show me your failed-API trend,"* *"Show me how you flag changes to the audit infrastructure itself,"* and *"Show me console login review."* The `SUMMARY` block becomes the per-period review record that documents AU-6 compliance, and the structured event excerpts give the assessor the raw evidence behind each finding.
 
 ## FedRAMP 20x Alignment
 
@@ -135,6 +135,10 @@ This script supports FedRAMP 20x compliance-as-code by producing deterministic, 
 ## CJIS v6.0 Relevance
 
 CJIS v6.0 (audit standard from April 1, 2026) introduces a hard delta on **AU-6**: agencies handling CJI must retain audit records for **1 year** and conduct **weekly review** of those records. This script is the operational tool that *performs* that weekly review. Combined with S3 archival of CloudTrail logs (Object Lock, 1-year retention) and `evidence-logger` (timestamped review records), the workflow satisfies the AU-6 delta end-to-end. A future enhancement will add a `--weekly-review` flag that produces a structured review record directly suitable for ingestion by `evidence-logger`.
+
+## Roadmap
+
+This tool will be consolidated into the **Unified Evidence Collector** (Project 4, Month 7), which aggregates `s3-audit`, `sg-audit`, `cloudtrail-audit`, and `evidence-logger` into a single pipeline producing OSCAL-ready evidence records. The `--weekly-review` flag noted in *CJIS v6.0 Relevance*, JSON output with per-finding control IDs, and the `evidence-logger` cross-link all land as part of that consolidation — making this tool the AU-6 review surface feeding [`oscal-evidence-pipeline`](https://github.com/0xBahalaNa/oscal-evidence-pipeline).
 
 ## Future Enhancements
 
