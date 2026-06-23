@@ -141,7 +141,7 @@ This script supports FedRAMP 20x compliance-as-code by producing deterministic, 
 
 ## CJIS v6.0 Relevance
 
-CJIS v6.0 (audit standard from April 1, 2026) introduces a hard delta on **AU-6**: agencies handling CJI must retain audit records for **1 year** and conduct **weekly review** of those records. This script is the operational tool that *performs* that weekly review. Combined with S3 archival of CloudTrail logs (Object Lock, 1-year retention) and `evidence-logger` (timestamped review records), the workflow satisfies the AU-6 delta end-to-end. A future enhancement will add a `--weekly-review` flag that produces a structured review record directly suitable for ingestion by `evidence-logger`.
+CJIS v6.0 (published Dec 27, 2024; default audit baseline from April 1, 2026; Priority 2-4 fully enforceable Oct 1, 2027) introduces a hard delta on **AU-6**: agencies handling CJI must retain audit records for **1 year** and conduct **weekly review** of those records. This script is the operational tool that *performs* that weekly review. Combined with S3 archival of CloudTrail logs (Object Lock, 1-year retention) and `evidence-logger` (timestamped review records), the workflow satisfies the AU-6 delta end-to-end. A future enhancement will add a `--weekly-review` flag that produces a structured review record directly suitable for ingestion by `evidence-logger`.
 
 ## Roadmap
 
