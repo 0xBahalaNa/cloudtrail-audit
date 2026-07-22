@@ -27,6 +27,29 @@ Two scripts:
 1. **`cloudtrail_audit.py`** — Analyzes CloudTrail events for security-relevant activity.
 2. **`generate_test_events.py`** — Creates test events to verify detection.
 
+## Architecture Overview
+
+```mermaid
+flowchart TD
+    CLI["cloudtrail_audit.py<br/>CLI entry"] --> CT["boto3 CloudTrail<br/>LookupEvents"]
+    CT --> CAT["Categorize events"]
+    CAT --> ROOT["Root account usage"]
+    CAT --> FAIL["Failed API calls"]
+    CAT --> SENS["Sensitive changes<br/>IAM · SG · Trail · S3"]
+    CAT --> CON["Console logins"]
+    FIX["generate_test_events.py<br/>optional fixtures"] -.-> CT
+    ROOT --> OUT["SECURITY FINDINGS<br/>+ console summary"]
+    FAIL --> OUT
+    SENS --> OUT
+    CON --> OUT
+    OUT --> HUM["AU-6 weekly review<br/>auditors / assessors"]
+    OUT --> PIPE["Future JSON export<br/>evidence-logger · OSCAL"]
+```
+
+Editable Mermaid source (kept in sync with the fence above): [`docs/architecture.mmd`](docs/architecture.mmd).
+
+`cloudtrail_audit.py` pulls recent CloudTrail events and buckets them into root usage, failed APIs, sensitive changes, and console logins for the AU-6 weekly review. Findings print as SECURITY FINDINGS plus a console summary today; JSON export is the planned handoff into evidence-logger / OSCAL. `generate_test_events.py` is an optional fixture path for local detection checks.
+
 ## Requirements
 
 - Python 3.x

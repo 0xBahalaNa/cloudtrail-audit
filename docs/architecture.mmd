@@ -1,0 +1,17 @@
+%% Editable Mermaid source for the README "Architecture Overview" section.
+%% Keep this file in sync with the inline ```mermaid fence in README.md.
+%% Diff-able source of truth for the architecture graph (no separate PNG export).
+flowchart TD
+    CLI["cloudtrail_audit.py<br/>CLI entry"] --> CT["boto3 CloudTrail<br/>LookupEvents"]
+    CT --> CAT["Categorize events"]
+    CAT --> ROOT["Root account usage"]
+    CAT --> FAIL["Failed API calls"]
+    CAT --> SENS["Sensitive changes<br/>IAM · SG · Trail · S3"]
+    CAT --> CON["Console logins"]
+    FIX["generate_test_events.py<br/>optional fixtures"] -.-> CT
+    ROOT --> OUT["SECURITY FINDINGS<br/>+ console summary"]
+    FAIL --> OUT
+    SENS --> OUT
+    CON --> OUT
+    OUT --> HUM["AU-6 weekly review<br/>auditors / assessors"]
+    OUT --> PIPE["Future JSON export<br/>evidence-logger · OSCAL"]
