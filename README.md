@@ -3,7 +3,7 @@
 ![AWS](https://img.shields.io/badge/AWS-CloudTrail-FF9900?style=flat&logo=amazonwebservices)
 ![NIST 800-53](https://img.shields.io/badge/NIST-800--53%20Rev%205-004990?style=flat)
 ![FedRAMP](https://img.shields.io/badge/FedRAMP-High%20Baseline-0071bc?style=flat)
-![CJIS](https://img.shields.io/badge/CJIS-Security%20Policy%20v6.0-cc0000?style=flat)
+![CJIS](https://img.shields.io/badge/CJIS-Security%20Policy%20v6.1-cc0000?style=flat)
 
 # CloudTrail Audit
 
@@ -18,7 +18,7 @@ only see the first. Findings print to the console; there is no JSON export today
 
 ## Compliance Controls Addressed
 
-| NIST 800-53 Rev 5 | FedRAMP High | CJIS v6.0 | Validation Method |
+| NIST 800-53 Rev 5 | FedRAMP High | CJIS v6.1 | Validation Method |
 |--------------------|:------------:|:---------:|-------------------|
 | AU-2 Event Logging | Yes | - | Consumes the CloudTrail event stream produced by AU-2 logging |
 | AU-3 Content of Audit Records | Yes | - | Extracts who / what / when / source from each event |
@@ -181,9 +181,9 @@ to a KSI dashboard or emitted OSCAL Assessment Results yet. The next useful step
 is JSON with a control ID on each finding so `evidence-logger` and the OSCAL
 tooling can take the file without a manual reshape.
 
-## CJIS v6.0 Relevance
+## CJIS v6.1 Relevance
 
-CJIS v6.0 hardens AU-6 for CJI: keep audit records at least 1 year, review them
+CJIS v6.1 hardens AU-6 for CJI: keep audit records at least 1 year, review them
 weekly. Published Dec 27, 2024; default audit baseline from April 1, 2026;
 Priority 2-4 fully enforceable Oct 1, 2027. This script is the weekly review
 pass for the last 24 hours (or whatever you set `HOURS_TO_LOOK_BACK` to). It does
