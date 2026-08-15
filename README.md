@@ -184,8 +184,8 @@ tooling can take the file without a manual reshape.
 ## CJIS v6.1 Relevance
 
 CJIS v6.1 hardens AU-6 for CJI: keep audit records at least 1 year, review them
-weekly. Published Dec 27, 2024; default audit baseline from April 1, 2026;
-Priority 2-4 fully enforceable Oct 1, 2027. This script is the weekly review
+weekly. Released June 25, 2026; v6.x the default audit baseline since April 1,
+2026; Priority 2-4 fully enforceable Oct 1, 2027. This script is the weekly review
 pass for the last 24 hours (or whatever you set `HOURS_TO_LOOK_BACK` to). It does
 not enforce retention; that still belongs on the S3 side (Object Lock, lifecycle).
 A planned `--weekly-review` flag would write a structured review record shaped for
